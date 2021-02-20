@@ -17,13 +17,10 @@ api = Api(app)
 jwt = JWT(app, authentication, identity)
 
 
-@app.before_first_request
-def create_table():
-    db.create_all()
-
 @app.route("/")
 def home():
     return redirect("https://github.com/temurchichua/unilab_rest_api/tree/main"), 302
+
 
 api.add_resource(ItemResource, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
