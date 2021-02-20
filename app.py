@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask_restful import Api
 from flask_jwt import JWT
 from security import authentication, identity
@@ -21,6 +21,9 @@ jwt = JWT(app, authentication, identity)
 def create_table():
     db.create_all()
 
+@app.route("/")
+def home():
+    return redirect("https://github.com/temurchichua/unilab_rest_api/tree/main"), 302
 
 api.add_resource(ItemResource, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
